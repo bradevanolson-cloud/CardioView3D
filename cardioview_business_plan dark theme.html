@@ -511,51 +511,6 @@
 .nav-tabs { white-space: nowrap; }
 .nav-tab { display: inline-flex; flex: 0 0 auto; margin-right: 8px; }
 
-
-/* === Hamburger for small screens === */
-.hamburger {
-  display: none;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  width: 40px;
-  height: 36px;
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 10px;
-  background: linear-gradient(180deg, rgba(122,93,255,.28), rgba(0,212,255,.20));
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  z-index: 60;
-}
-.hamburger span { display:block; width:22px; height:2px; background:#e8ebff; border-radius:2px; }
-@media (max-width: 820px) {
-  .hamburger { display:flex; }
-  .nav-tabs { padding-top: 12px; }
-  .tab-row {
-    display: none;
-    position: absolute;
-    left: 0; right: 0; top: 56px;
-    background: linear-gradient(180deg, rgba(14,19,45,.98), rgba(14,19,45,.94));
-    border-bottom: 1px solid #1a2255;
-    padding: 8px 10px 12px;
-    box-shadow: 0 16px 28px rgba(0,0,0,.35);
-  }
-  .tab-row.open { display: block; }
-  .tab-row .nav-tab { display:block; width:100%; margin:6px 0; }
-}
-
-
-/* --- Force normal text wrapping inside content --- */
-.tab-content, .tab-content *,
-.section, .section *,
-.highlight-box, .highlight-box * {
-  white-space: normal !important;
-  overflow-wrap: anywhere;
-  word-break: normal;
-}
-
 </style>
 </head>
 <body>
@@ -567,10 +522,6 @@
         
         <div class="business-plan">
             <div class="nav-tabs">
-  <button class="hamburger" aria-label="Open menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-  <div class="tab-row">
                 <button class="nav-tab active" onclick="showSection('executive-summary')">Executive Summary</button>
                 <button class="nav-tab" onclick="showSection('market-analysis')">Market Analysis</button>
                 <button class="nav-tab" onclick="showSection('team-strategy')">Team Strategy</button>
@@ -580,9 +531,9 @@
                 <button class="nav-tab" onclick="showSection('financial')">Financials</button>
                 <button class="nav-tab" onclick="showSection('risks')">Risk Analysis</button>
                 <button class="nav-tab" onclick="showSection('funding')">Funding Ask</button>
-            </div><!-- end .tab-row -->
-
-    <div class="tab-content">
+            </div>
+            
+            <div class="tab-content">
                 <!-- Executive Summary -->
                 <div class="section show" id="executive-summary">
                     <h2>Executive Summary</h2>
@@ -1811,51 +1762,6 @@
 .nav-tabs { white-space: nowrap; }
 .nav-tab { display: inline-flex; flex: 0 0 auto; margin-right: 8px; }
 
-
-/* === Hamburger for small screens === */
-.hamburger {
-  display: none;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  width: 40px;
-  height: 36px;
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 10px;
-  background: linear-gradient(180deg, rgba(122,93,255,.28), rgba(0,212,255,.20));
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  z-index: 60;
-}
-.hamburger span { display:block; width:22px; height:2px; background:#e8ebff; border-radius:2px; }
-@media (max-width: 820px) {
-  .hamburger { display:flex; }
-  .nav-tabs { padding-top: 12px; }
-  .tab-row {
-    display: none;
-    position: absolute;
-    left: 0; right: 0; top: 56px;
-    background: linear-gradient(180deg, rgba(14,19,45,.98), rgba(14,19,45,.94));
-    border-bottom: 1px solid #1a2255;
-    padding: 8px 10px 12px;
-    box-shadow: 0 16px 28px rgba(0,0,0,.35);
-  }
-  .tab-row.open { display: block; }
-  .tab-row .nav-tab { display:block; width:100%; margin:6px 0; }
-}
-
-
-/* --- Force normal text wrapping inside content --- */
-.tab-content, .tab-content *,
-.section, .section *,
-.highlight-box, .highlight-box * {
-  white-space: normal !important;
-  overflow-wrap: anywhere;
-  word-break: normal;
-}
-
 </style>
                     
                     <table class="financial-table">
@@ -2329,26 +2235,5 @@
             showSection('executive-summary');
         });
     </script>
-
-<script>
-  (function() {
-    const burger = document.querySelector('.hamburger');
-    const row = document.querySelector('.tab-row');
-    if (burger && row) {
-      burger.addEventListener('click', () => {
-        const open = row.classList.toggle('open');
-        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
-      // Close drawer if user taps a tab
-      row.addEventListener('click', (e) => {
-        if (e.target.classList.contains('nav-tab') && row.classList.contains('open')) {
-          row.classList.remove('open');
-          burger.setAttribute('aria-expanded', 'false');
-        }
-      });
-    }
-  })();
-</script>
-
 </body>
 </html>
