@@ -1,0 +1,2354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CardioView 3D Business Plan</title>
+    <style>
+        :root {
+            --bg: #0b1020;
+            --bg-soft: #111735;
+            --card: #121a3b;
+            --text: #e8ebff;
+            --muted: #a5b0d5;
+            --brand: #6ae3ff;
+            --brand-2: #7c5cff;
+            --accent: #00d4ff;
+            --success: #2fd084;
+            --danger: #ff6b6b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            color: var(--text);
+            margin-bottom: 30px;
+            padding: 60px 0;
+            position: relative;
+            background: 
+                radial-gradient(60% 60% at 70% 30%, rgba(124,92,255,.25), transparent 60%),
+                radial-gradient(40% 40% at 20% 80%, rgba(0,212,255,.18), transparent 60%);
+        }
+        
+        .header h1 {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            color: var(--muted);
+        }
+        
+        .business-plan {
+            background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,.4);
+            overflow: hidden;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background: var(--bg-soft);
+            border-bottom: 1px solid rgba(255,255,255,.08);
+            overflow-x: auto;
+            flex-wrap: wrap;
+        }
+        
+        .nav-tab {
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            border: none;
+            background: none;
+            font-size: 14px;
+            font-weight: 600;
+            min-width: fit-content;
+            color: var(--muted);
+        }
+        
+        .nav-tab:hover {
+            background: rgba(255,255,255,.05);
+            color: var(--text);
+        }
+        
+        .nav-tab.active {
+            background: linear-gradient(180deg, var(--brand-2), #5a3bff);
+            color: var(--text);
+            box-shadow: 0 0 20px rgba(124,92,255,.3);
+        }
+        
+        .tab-content {
+            padding: 30px;
+            min-height: 600px;
+            background: var(--card);
+        }
+        
+        .section {
+            display: none;
+            width: 100%;
+        }
+        
+        .section.show {
+            display: block;
+        }
+        
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .metric-card {
+            background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+            border: 1px solid rgba(255,255,255,.12);
+            color: var(--text);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--brand), var(--brand-2));
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            color: var(--brand);
+        }
+        
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+        
+        .competitive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .competitor-card {
+            background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,.2);
+        }
+        
+        .competitor-card h3 {
+            color: var(--brand);
+            margin-bottom: 15px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(124,92,255,.2), rgba(0,212,255,.15));
+            border: 1px solid rgba(255,255,255,.1);
+            color: var(--text);
+            padding: 25px;
+            border-radius: 16px;
+            margin: 20px 0;
+            box-shadow: 0 15px 35px rgba(124,92,255,.2);
+            position: relative;
+        }
+        
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            border-radius: inherit;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: xor;
+        }
+        
+        .highlight-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            color: var(--text);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 30px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(180deg, var(--brand), var(--brand-2));
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 70px;
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            left: 20px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            border-radius: 50%;
+            border: 3px solid var(--card);
+            box-shadow: 0 0 15px rgba(124,92,255,.4);
+        }
+        
+        .financial-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 15px 35px rgba(0,0,0,.3);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .financial-table th,
+        .financial-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+        
+        .financial-table th {
+            background: linear-gradient(135deg, var(--brand-2), #5a3bff);
+            color: var(--text);
+            font-weight: 600;
+        }
+        
+        .financial-table tr:nth-child(even) {
+            background: rgba(255,255,255,.02);
+        }
+        
+        .financial-table tr {
+            background: var(--card);
+            color: var(--text);
+        }
+        
+        .risk-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .risk-item {
+            padding: 20px;
+            border-radius: 12px;
+            background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+            border: 1px solid rgba(255,255,255,.08);
+            box-shadow: 0 8px 25px rgba(0,0,0,.2);
+        }
+        
+        .risk-high {
+            border-left: 4px solid var(--danger);
+        }
+        
+        .risk-medium {
+            border-left: 4px solid #ff9800;
+        }
+        
+        .risk-low {
+            border-left: 4px solid var(--success);
+        }
+        
+        .action-item {
+            background: linear-gradient(135deg, rgba(0,212,255,.1), rgba(124,92,255,.05));
+            border: 1px solid rgba(0,212,255,.2);
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            color: var(--text);
+        }
+        
+        .action-item strong {
+            color: var(--accent);
+        }
+        
+        .strength {
+            color: var(--success);
+            margin-bottom: 5px;
+        }
+        
+        .weakness {
+            color: var(--danger);
+            margin-bottom: 5px;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
+        
+        .modal-content {
+            background: var(--card);
+            border: 1px solid rgba(255,255,255,.08);
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0,0,0,.5);
+            color: var(--text);
+        }
+        
+        .close {
+            color: var(--muted);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .close:hover {
+            color: var(--brand);
+        }
+        
+        .bio-header {
+            background: linear-gradient(135deg, var(--brand-2), #5a3bff);
+            color: var(--text);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .bio-section {
+            margin-bottom: 25px;
+        }
+        
+        .bio-section h3 {
+            color: var(--brand);
+            border-bottom: 2px solid var(--brand);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .experience-item {
+            background: rgba(255,255,255,.02);
+            border: 1px solid rgba(255,255,255,.08);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--brand);
+        }
+        
+        .experience-item h4 {
+            color: var(--brand);
+            margin-bottom: 5px;
+        }
+        
+        .experience-item .date {
+            color: var(--muted);
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        h2, h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--text);
+        }
+        
+        h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            margin: 0 0 20px;
+        }
+        
+        h3 {
+            margin-bottom: 15px;
+        }
+        
+        p, li {
+            color: var(--muted);
+        }
+        
+        ul {
+            color: var(--muted);
+        }
+        
+        strong {
+            color: var(--text);
+        }
+        
+        @keyframes growBar1 {
+            from { height: 0%; }
+            to { height: 0%; }
+        }
+        @keyframes growBar2 {
+            from { height: 0%; }
+            to { height: 2.5%; }
+        }
+        @keyframes growBar3 {
+            from { height: 0%; }
+            to { height: 12.5%; }
+        }
+        @keyframes growBar4 {
+            from { height: 0%; }
+            to { height: 50%; }
+        }
+        @keyframes growBar5 {
+            from { height: 0%; }
+            to { height: 100%; }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .metric-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .competitive-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tab-content {
+                padding: 20px;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 20px;
+            }
+        }
+    
+/* --- Fix for highlight tiles: remove overlay, use solid background, ensure text clickable/visible --- */
+.highlight-box { background:#121a3b !important; border:1px solid #22306f !important; color:#e8ebff !important; position:relative; }
+.highlight-box::before { content:none !important; display:none !important; pointer-events:none !important; }
+.highlight-box > * { position:relative; z-index:1; color:#e8ebff !important; }
+
+
+/* === Sticky header for tabs + non-wrapping scrollable row === */
+.nav-tabs {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: linear-gradient(180deg, rgba(14,19,45,.95), rgba(14,19,45,.85));
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #1a2255;
+  box-shadow: 0 6px 20px rgba(0,0,0,.25);
+  padding-top: 8px;
+}
+.nav-tabs > div, .nav-tabs {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.nav-tabs::-webkit-scrollbar { height: 8px; }
+.nav-tabs::-webkit-scrollbar-thumb { background: #22306f; border-radius: 8px; }
+.nav-tabs { white-space: nowrap; }
+.nav-tab { display: inline-flex; flex: 0 0 auto; margin-right: 8px; }
+
+
+/* === Hamburger for small screens === */
+.hamburger {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 40px;
+  height: 36px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(122,93,255,.28), rgba(0,212,255,.20));
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  z-index: 60;
+}
+.hamburger span { display:block; width:22px; height:2px; background:#e8ebff; border-radius:2px; }
+@media (max-width: 820px) {
+  .hamburger { display:flex; }
+  .nav-tabs { padding-top: 12px; }
+  .tab-row {
+    display: none;
+    position: absolute;
+    left: 0; right: 0; top: 56px;
+    background: linear-gradient(180deg, rgba(14,19,45,.98), rgba(14,19,45,.94));
+    border-bottom: 1px solid #1a2255;
+    padding: 8px 10px 12px;
+    box-shadow: 0 16px 28px rgba(0,0,0,.35);
+  }
+  .tab-row.open { display: block; }
+  .tab-row .nav-tab { display:block; width:100%; margin:6px 0; }
+}
+
+
+/* --- Force normal text wrapping inside content --- */
+.tab-content, .tab-content *,
+.section, .section *,
+.highlight-box, .highlight-box * {
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>CardioView 3D Business Plan</h1>
+            <p>Revolutionary AI-Powered Coronary Angiography 3D Reconstruction System</p>
+        </div>
+        
+        <div class="business-plan">
+            <div class="nav-tabs">
+  <button class="hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="tab-row">
+                <button class="nav-tab active" onclick="showSection('executive-summary')">Executive Summary</button>
+                <button class="nav-tab" onclick="showSection('market-analysis')">Market Analysis</button>
+                <button class="nav-tab" onclick="showSection('team-strategy')">Team Strategy</button>
+                <button class="nav-tab" onclick="showSection('technology')">Technology</button>
+                <button class="nav-tab" onclick="showSection('development-plan')">Development</button>
+                <button class="nav-tab" onclick="showSection('regulatory')">Regulatory</button>
+                <button class="nav-tab" onclick="showSection('financial')">Financials</button>
+                <button class="nav-tab" onclick="showSection('risks')">Risk Analysis</button>
+                <button class="nav-tab" onclick="showSection('funding')">Funding Ask</button>
+            </div><!-- end .tab-row -->
+
+    <div class="tab-content">
+                <!-- Executive Summary -->
+                <div class="section show" id="executive-summary">
+                    <h2>Executive Summary</h2>
+                    
+                    <div class="highlight-box">
+                        <h3>The Problem</h3>
+                        <p><strong>Cardiac disease is the #1 killer in America</strong> - responsible for 1 in every 5 deaths. Cardiologists miss 10-20% of coronary occlusions during angiography due to heart motion, patient variability, and the complexity of processing multiple angles simultaneously. Human interpretation in seconds-long decisions leads to diagnostic errors, unnecessary procedures, and delayed treatments that can be fatal.</p>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <h3>Our Solution</h3>
+                        <p>CardioView 3D's AI-powered 3D reconstruction system combines 2-3 angiographic video angles to create real-time, interactive 3D models of coronary anatomy. Features include:</p>
+                        <ul style="margin-top: 10px;">
+                            <li>Automated HIPAA-compliant video processing</li>
+                            <li>3D triangulation from multiple viewing angles</li>
+                            <li>Real-time occlusion percentage analysis</li>
+                            <li>Flow rate assessment for distal obstruction prediction</li>
+                            <li>Interactive, color-coded visualization</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">#1</div>
+                            <div class="metric-label">Leading Cause of Death in US</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">1 in 5</div>
+                            <div class="metric-label">Deaths from Cardiac Disease</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">1M+</div>
+                            <div class="metric-label">Annual Angiographies in US</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">10-20%</div>
+                            <div class="metric-label">Missed Diagnoses Rate</div>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <h3>Our Clinical Validation Advantage</h3>
+                        <p><strong>Expert Clinical Partnership:</strong> CardioView 3D is working directly with Dr. Tanmay Swadia, an experienced interventional cardiologist who is excited about this technology's potential to enhance diagnostic accuracy in the cath lab.</p>
+                    </div>
+                    
+                    <div class="action-item">
+                        <strong>Seeking:</strong> $5M in seed funding for prototype development, clinical validation, and market entry preparation.
+                    </div>
+                </div>
+                
+                <!-- Market Analysis -->
+                <div class="section" id="market-analysis">
+                    <h2>Market Analysis</h2>
+                    
+                    <h3>The Cardiac Death Crisis - Key Statistics</h3>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">696,962</div>
+                            <div class="metric-label">Cardiac Deaths in US (2020)</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">18.6M</div>
+                            <div class="metric-label">Global CVD Deaths Annually</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">523M</div>
+                            <div class="metric-label">People with CVD Globally</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">$200B+</div>
+                            <div class="metric-label">Annual CVD Costs in US</div>
+                        </div>
+                    </div>
+                    
+                    <h3>Diagnostic Error Impact</h3>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">10-20%</div>
+                            <div class="metric-label">Missed Occlusions in Complex Cases</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">13%</div>
+                            <div class="metric-label">Unnecessary Interventions from Misdiagnosis</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">15-25%</div>
+                            <div class="metric-label">AI Accuracy Improvement</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">90%+</div>
+                            <div class="metric-label">AI Diagnostic Accuracy</div>
+                        </div>
+                    </div>
+                    
+                    <h3>Market Size & Growth Projections</h3>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">$36.6B</div>
+                            <div class="metric-label">AI Cardiology Market by 2034</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">34.4%</div>
+                            <div class="metric-label">CAGR (2024-2034)</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">$10B+</div>
+                            <div class="metric-label">Interventional Cardiology Segment</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">50%</div>
+                            <div class="metric-label">AI Procedure Time Reduction</div>
+                        </div>
+                    </div>
+                    
+                    <h3>Economic Impact & ROI Metrics</h3>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">$75K</div>
+                            <div class="metric-label">Annual Subscription per Hospital</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">$225K</div>
+                            <div class="metric-label">Customer LTV (3-Year Commitment)</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">70%</div>
+                            <div class="metric-label">Long-Term Gross Margins</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">$10K</div>
+                            <div class="metric-label">Customer Acquisition Cost</div>
+                        </div>
+                    </div>
+                    
+                    <h3>Key Market Drivers</h3>
+                    <ul style="margin: 20px 0;">
+                        <li><strong>Cardiac Death Crisis:</strong> #1 cause of death in US, 1 in 5 deaths from CAD</li>
+                        <li><strong>Critical Diagnostic Gaps:</strong> 10-20% misdiagnosis rate in complex angiography cases</li>
+                        <li><strong>Human Processing Limitations:</strong> Seconds-long decisions with 10-15 variables per image</li>
+                        <li><strong>Economic Pressure:</strong> $200B+ annual CVD costs driving efficiency needs</li>
+                        <li><strong>Physician Shortages:</strong> AI bridging gaps in specialized cardiac care</li>
+                        <li><strong>Reimbursement Expansion:</strong> Growing CPT codes for AI diagnostics</li>
+                    </ul>
+                    
+                    <h3>Target Markets</h3>
+                    <div class="competitive-grid">
+                        <div class="competitor-card">
+                            <h3>Primary: Hospital Cath Labs</h3>
+                            <p><strong>Size:</strong> ~4,000 facilities in US</p>
+                            <p><strong>Need:</strong> Workflow efficiency, diagnostic accuracy</p>
+                            <p><strong>Budget:</strong> $100K-500K for imaging software</p>
+                        </div>
+                        <div class="competitor-card">
+                            <h3>Secondary: Cardiology Groups</h3>
+                            <p><strong>Size:</strong> ~15,000 practices in US</p>
+                            <p><strong>Need:</strong> Advanced diagnostic tools</p>
+                            <p><strong>Budget:</strong> $50K-200K for AI solutions</p>
+                        </div>
+                        <div class="competitor-card">
+                            <h3>Tertiary: Imaging Centers</h3>
+                            <p><strong>Size:</strong> ~8,000 facilities in US</p>
+                            <p><strong>Need:</strong> Differentiation, quality improvement</p>
+                            <p><strong>Budget:</strong> $25K-100K for specialized software</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Competitive Landscape Analysis</h3>
+                    <div class="competitive-grid">
+                        <div class="competitor-card">
+                            <h3>CT-Based AI Solutions</h3>
+                            <h4>HeartFlow (~$1.5B valuation) & Cleerly ($300M+ funding)</h4>
+                            <p><strong>Market Position:</strong> Pre-procedure diagnostic analysis</p>
+                            <p><strong>Limitation:</strong> Requires separate CT scan, not real-time</p>
+                            <p><strong>Our Advantage:</strong> Direct cath lab integration</p>
+                        </div>
+                        
+                        <div class="competitor-card">
+                            <h3>Cath Lab Equipment Vendors</h3>
+                            <h4>Philips, Siemens, GE, Canon</h4>
+                            <p><strong>Market Position:</strong> Hardware + basic 3D tools</p>
+                            <p><strong>Limitation:</strong> Limited AI, single-angle reconstruction</p>
+                            <p><strong>Our Advantage:</strong> Advanced AI multi-angle fusion</p>
+                        </div>
+                        
+                        <div class="competitor-card">
+                            <h3>Our Blue Ocean</h3>
+                            <h4>Real-Time Interventional AI</h4>
+                            <p><strong>Market Gap:</strong> No real-time multi-angle AI fusion</p>
+                            <p><strong>Opportunity:</strong> $10B+ interventional cardiology market</p>
+                            <p><strong>Strategy:</strong> Partner with hardware vendors as software layer</p>
+                        </div>
+                    </div>
+                    
+                    <div class="competitive-grid">
+                        <div class="competitor-card">
+                            <h3>HeartFlow (FFR-CT)</h3>
+                            <div class="strength">✅ FDA-cleared AI for coronary CTA</div>
+                            <div class="strength">✅ 100K+ patients analyzed</div>
+                            <div class="strength">✅ Strong clinical validation</div>
+                            <div class="weakness">❌ CT-based, requires separate imaging</div>
+                            <div class="weakness">❌ No real-time cath lab integration</div>
+                            <div class="weakness">❌ Static analysis, not dynamic flow</div>
+                        </div>
+                        
+                        <div class="competitor-card">
+                            <h3>Cleerly (AI-QCT)</h3>
+                            <div class="strength">✅ Advanced plaque characterization</div>
+                            <div class="strength">✅ Superior to expert readers (AUC 0.96)</div>
+                            <div class="strength">✅ Comprehensive reporting suite</div>
+                            <div class="weakness">❌ CT-based, not angiography</div>
+                            <div class="weakness">❌ Pre-procedure analysis only</div>
+                            <div class="weakness">❌ No real-time interventional guidance</div>
+                        </div>
+                        
+                        <div class="competitor-card">
+                            <h3>Philips (Allura 3D-CA)</h3>
+                            <div class="strength">✅ Market leader in cath lab equipment</div>
+                            <div class="strength">✅ Established 3D reconstruction</div>
+                            <div class="weakness">❌ Limited AI integration</div>
+                            <div class="weakness">❌ Single rotational acquisition only</div>
+                            <div class="weakness">❌ No multi-angle fusion</div>
+                        </div>
+                    </div>
+                    
+                    <div class="competitor-card" style="margin: 20px 0;">
+                        <h3>Siemens (IC3D)</h3>
+                        <div class="strength">✅ 3D from just two static images</div>
+                        <div class="strength">✅ Reduced contrast/radiation</div>
+                        <div class="weakness">❌ Limited to static reconstruction</div>
+                        <div class="weakness">❌ No AI-powered flow analysis</div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <h3>CardioView 3D's Unique Market Position</h3>
+                        <p><strong>The Critical Gap We Fill:</strong> While HeartFlow and Cleerly excel at pre-procedure CT-based analysis, and Philips/Siemens provide basic 3D reconstruction, <strong>NO ONE</strong> offers real-time, AI-powered multi-angle fusion during actual cath lab procedures.</p>
+                        
+                        <h4 style="margin: 15px 0 10px 0;">Key Differentiators:</h4>
+                        <ul>
+                            <li><strong>Real-Time Cath Lab Integration:</strong> Unlike CT-based competitors, we work with live angiography</li>
+                            <li><strong>Multi-Angle AI Fusion:</strong> First to combine 2-3 angles with AI vs. single rotational acquisitions</li>
+                            <li><strong>Dynamic Flow Analysis:</strong> AI-powered contrast assessment vs. static plaque analysis</li>
+                            <li><strong>Interventional Focus:</strong> Built for procedures, not just diagnosis</li>
+                            <li><strong>No Additional Imaging:</strong> Uses existing cath lab equipment vs. requiring separate CT scans</li>
+                        </ul>
+                        
+                        <p style="margin-top: 15px;"><strong>Market Opportunity:</strong> HeartFlow ($1.5B valuation) and Cleerly ($300M+ funding) validate the AI cardiac imaging market, but both require separate CT imaging. CardioView 3D captures the $10B+ interventional cardiology market they can't address.</p>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <h3>Our Clinical Validation Advantage</h3>
+                        <p><strong>Expert Clinical Partnership:</strong> CardioView 3D is working directly with Dr. Tanmay Swadia, an experienced interventional cardiologist who is excited about this technology's potential to enhance diagnostic accuracy in the cath lab. Dr. Swadia will provide:</p>
+                        <ul style="margin-top: 10px;">
+                            <li>Real-world clinical validation and case studies</li>
+                            <li>Expert diagnosis validation for AI training datasets</li>
+                            <li>Clinical workflow integration insights</li>
+                            <li>Key opinion leader endorsement for market adoption</li>
+                            <li>Direct feedback from active cath lab procedures</li>
+                        </ul>
+                        <p style="margin-top: 15px;">Having a dedicated interventional cardiologist champion greatly accelerates our development timeline and provides immediate clinical credibility with investors and potential customers.</p>
+                    </div>
+                </div>
+                
+                <!-- Team Strategy -->
+                <div class="section" id="team-strategy">
+                    <h2>Team Strategy & Organizational Structure</h2>
+                    
+                    <div class="highlight-box">
+                        <h3>Current Team Foundation</h3>
+                        <p><strong>Clinical Champion:</strong> Dr. Tanmay Swadia - Interventional Cardiologist providing clinical validation and workflow expertise</p>
+                        <p><strong>Executive Leadership:</strong> Brad Olson, MSN - CEO/COO with clinical and operational expertise</p>
+                        <p><strong>Technical Foundation:</strong> AI and cardiac imaging expertise driving product development</p>
+                    </div>
+                    
+                    <h3>Organizational Hierarchy: First 21 Team Members</h3>
+                    
+                    <!-- CEO Level -->
+                    <div style="text-align: center; margin: 30px 0;">
+                        <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 20px; border-radius: 15px; max-width: 400px; margin: 0 auto; box-shadow: 0 8px 25px rgba(0,0,0,0.3); cursor: pointer;" onclick="showBradBio()">
+                            <h4 style="margin: 0 0 8px 0; font-size: 1.2rem;">CEO/COO</h4>
+                            <h5 style="margin: 0 0 10px 0; font-size: 1rem; opacity: 0.9; text-decoration: underline;">Brad Olson, MSN</h5>
+                            <p style="margin: 0; font-size: 0.9rem;">Visionary leader with medtech startup experience and clinical background. Oversees strategy, funding, operations, and board relations.</p>
+                            <p style="margin: 10px 0 0 0; font-size: 0.8rem; opacity: 0.8;">Click for full bio</p>
+                        </div>
+                    </div>
+                    
+                    <!-- C-Level -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin: 30px 0;">
+                        <div style="background: #e3f2fd; border: 3px solid #2196f3; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                            <h4 style="color: #1976d2; margin: 0 0 10px 0;">CTO</h4>
+                            <p style="margin: 0 0 10px 0; font-size: 0.9rem;">AI/Computer vision expert. Architects technical stack and ML infrastructure.</p>
+                            <p style="margin: 0; font-size: 0.8rem; font-weight: bold; color: #1976d2;">11 Direct Reports</p>
+                        </div>
+                        
+                        <div style="background: #f3e5f5; border: 3px solid #9c27b0; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                            <h4 style="color: #7b1fa2; margin: 0 0 10px 0;">CMO</h4>
+                            <h5 style="color: #7b1fa2; margin: 0 0 8px 0; font-size: 0.9rem;">Dr. Tanmay Swadia</h5>
+                            <p style="margin: 0; font-size: 0.9rem;">Board-certified interventional cardiologist. Leads clinical validation and physician adoption.</p>
+                        </div>
+                        
+                        <div style="background: #fff3e0; border: 3px solid #ff9800; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                            <h4 style="color: #f57c00; margin: 0 0 10px 0;">CFO</h4>
+                            <p style="margin: 0 0 10px 0; font-size: 0.9rem;">Finance, business operations, regulatory compliance, and strategic partnerships.</p>
+                            <p style="margin: 0; font-size: 0.8rem; font-weight: bold; color: #f57c00;">3 Direct Reports</p>
+                        </div>
+                    </div>
+                    
+                    <!-- CTO's Team -->
+                    <div style="background: linear-gradient(135deg, #e3f2fd, #bbdefb); padding: 25px; border-radius: 15px; margin: 25px 0; border-left: 6px solid #2196f3; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <h4 style="color: #1976d2; margin: 0 0 20px 0; text-align: center; font-size: 1.1rem;">CTO Division: Technical Development (11 members)</h4>
+                        
+                        <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; border: 2px solid #2196f3; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                            <h5 style="color: #1976d2; margin: 0 0 15px 0;">AI/ML Team (9 members)</h5>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;">
+                                <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; border-left: 4px solid #2196f3;">
+                                    <strong style="color: #1976d2; display: block; margin-bottom: 4px;">ML Engineers (5)</strong>
+                                    <p style="margin: 0; font-size: 0.85rem; color: #666;">3D reconstruction, computer vision</p>
+                                </div>
+                                <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; border-left: 4px solid #2196f3;">
+                                    <strong style="color: #1976d2; display: block; margin-bottom: 4px;">Data Scientists (3)</strong>
+                                    <p style="margin: 0; font-size: 0.85rem; color: #666;">DICOM processing, model training</p>
+                                </div>
+                                <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; border-left: 4px solid #2196f3;">
+                                    <strong style="color: #1976d2; display: block; margin-bottom: 4px;">Data Engineer (1)</strong>
+                                    <p style="margin: 0; font-size: 0.85rem; color: #666;">Cloud pipelines, infrastructure</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; border: 2px solid #9c27b0; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                            <h5 style="color: #7b1fa2; margin: 0 0 15px 0;">Software Development Team (2 members)</h5>
+                            <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; border-left: 4px solid #9c27b0;">
+                                <strong style="color: #7b1fa2; display: block; margin-bottom: 4px;">Full-Stack Engineers (2)</strong>
+                                <p style="margin: 0; font-size: 0.85rem; color: #666;">3D visualization, cath lab integration</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- CFO's Team -->
+                    <div style="background: linear-gradient(135deg, #fff3e0, #ffe0b2); padding: 25px; border-radius: 15px; margin: 25px 0; border-left: 6px solid #ff9800; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <h4 style="color: #f57c00; margin: 0 0 20px 0; text-align: center; font-size: 1.1rem;">CFO Division: Business Operations & Regulatory (3 members)</h4>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
+                            <div style="background: white; padding: 15px; border-radius: 10px; border: 2px solid #ff9800; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                                <h5 style="margin: 0 0 8px 0; color: #f57c00;">Regulatory Affairs Specialist</h5>
+                                <p style="margin: 0; font-size: 0.85rem; color: #666;">FDA 510(k) process, ISO 13485 compliance</p>
+                            </div>
+                            <div style="background: white; padding: 15px; border-radius: 10px; border: 2px solid #ff9800; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                                <h5 style="margin: 0 0 8px 0; color: #f57c00;">Clinical Research Lead</h5>
+                                <p style="margin: 0; font-size: 0.85rem; color: #666;">Validation trials, hospital coordination</p>
+                            </div>
+                            <div style="background: white; padding: 15px; border-radius: 10px; border: 2px solid #ff9800; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                                <h5 style="margin: 0 0 8px 0; color: #f57c00;">Business Development Lead</h5>
+                                <p style="margin: 0; font-size: 0.85rem; color: #666;">Hospital partnerships, sales strategy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Technology -->
+                <div class="section" id="technology">
+                    <h2>Technology Overview</h2>
+                    
+                    <div class="highlight-box">
+                        <h3>The Current Challenge: 2D Angiography Limitations</h3>
+                        <p>Today's cardiac catheterization labs rely on 2D angiographic images like those shown below. While these provide valuable diagnostic information, they present significant challenges for accurate 3D assessment of coronary anatomy and stenosis severity.</p>
+                    </div>
+                    
+                    <h3>Current State: Traditional 2D Angiography</h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; margin: 20px 0;">
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border: 2px solid #667eea;">
+                            <h4 style="color: #667eea; margin-bottom: 15px;">Single-Angle View Limitations</h4>
+                            <div style="background: #e9ecef; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center; min-height: 300px; display: flex; align-items: center; justify-content: center; border: 2px dashed #667eea;">
+                                <div>
+                                    <p style="font-weight: bold; color: #667eea; margin-bottom: 10px; font-size: 1rem;">Angiography Image 1</p>
+                                    <p style="font-style: italic; color: #666; margin-bottom: 10px; font-size: 0.9rem;">Traditional 2D coronary angiogram showing complex vessel anatomy from single projection</p>
+                                    <p style="font-size: 0.8rem; color: #999;">Image placeholder - Insert provided angiography image here</p>
+                                </div>
+                            </div>
+                            <div style="color: #dc3545; margin-bottom: 10px;"><strong>Challenges:</strong></div>
+                            <ul style="color: #666; font-size: 0.9rem;">
+                                <li>Vessel overlap and foreshortening</li>
+                                <li>Difficulty assessing true stenosis severity</li>
+                                <li>Limited depth perception</li>
+                                <li>Subjective interpretation variability</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border: 2px solid #667eea;">
+                            <h4 style="color: #667eea; margin-bottom: 15px;">Multi-Angle Acquisition</h4>
+                            <div style="background: #e9ecef; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center; min-height: 300px; display: flex; align-items: center; justify-content: center; border: 2px dashed #667eea;">
+                                <div>
+                                    <p style="font-weight: bold; color: #667eea; margin-bottom: 10px; font-size: 1rem;">Angiography Image 2</p>
+                                    <p style="font-style: italic; color: #666; margin-bottom: 10px; font-size: 0.9rem;">Alternative angiographic projection of same anatomy revealing different perspectives</p>
+                                    <p style="font-size: 0.8rem; color: #999;">Image placeholder - Insert provided angiography image here</p>
+                                </div>
+                            </div>
+                            <div style="color: #28a745; margin-bottom: 10px;"><strong>Current Process:</strong></div>
+                            <ul style="color: #666; font-size: 0.9rem;">
+                                <li>Multiple 2D projections acquired</li>
+                                <li>Cardiologist mentally reconstructs 3D anatomy</li>
+                                <li>Time-consuming manual analysis</li>
+                                <li>High cognitive load during procedures</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <h3>DICOM Video Quality Considerations</h3>
+                        <p>Modern angiography systems capture high-resolution DICOM video streams at 15-30 FPS with spatial resolution of 0.2-0.3mm. However, image quality varies significantly based on:</p>
+                        <ul style="margin-top: 10px;">
+                            <li><strong>Contrast injection timing and concentration</strong></li>
+                            <li><strong>Patient motion and cardiac rhythm</strong></li>
+                            <li><strong>C-arm positioning and angulation</strong></li>
+                            <li><strong>Equipment age and calibration</strong></li>
+                            <li><strong>Operator technique and experience</strong></li>
+                        </ul>
+                        <p style="margin-top: 15px;">CardioView 3D's AI algorithms are specifically designed to handle these real-world variations and extract maximum diagnostic value from existing imaging workflows.</p>
+                    </div>
+                    
+                    <h3>CardioView 3D Solution: AI-Powered 3D Reconstruction</h3>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <h4>1. DICOM Video Ingestion & Processing</h4>
+                            <p><strong>Input:</strong> Multiple 2D angiographic video streams from standard cath lab equipment</p>
+                            <p><strong>Process:</strong> HIPAA-compliant patient data stripping → Quality enhancement → Motion artifact correction</p>
+                            <p><strong>Output:</strong> Standardized, anonymized video data ready for AI analysis</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <h4>2. AI-Powered Multi-Angle Analysis</h4>
+                            <p><strong>Computer Vision:</strong> Advanced CNN models trained on 10,000+ annotated angiography cases</p>
+                            <p><strong>Vessel Detection:</strong> Automated identification and segmentation of coronary vessels</p>
+                            <p><strong>Motion Correction:</strong> Cardiac cycle synchronization and breathing artifact removal</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <h4>3. 3D Triangulation & Reconstruction</h4>
+                            <p><strong>Geometric Analysis:</strong> Multi-view triangulation using calibrated C-arm geometry</p>
+                            <p><strong>Stenosis Quantification:</strong> Precise measurement of vessel diameter and occlusion percentage</p>
+                            <p><strong>Uncertainty Estimation:</strong> Confidence intervals for all measurements</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <h4>4. Dynamic Flow Assessment</h4>
+                            <p><strong>Contrast Tracking:</strong> AI-powered analysis of contrast agent flow patterns</p>
+                            <p><strong>Velocity Calculations:</strong> Frame-by-frame flow velocity estimation</p>
+                            <p><strong>Distal Perfusion:</strong> Prediction of downstream flow impairment</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <h4>5. Interactive 3D Visualization</h4>
+                            <p><strong>Real-Time Rendering:</strong> GPU-accelerated 3D model generation in <60 seconds</p>
+                            <p><strong>Interactive Controls:</strong> Rotation, zoom, cross-sectional views</p>
+                            <p><strong>Color-Coded Analysis:</strong> Stenosis severity mapping with clinical decision support</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Technical Specifications & Performance Metrics</h3>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">0.2-0.3mm</div>
+                            <div class="metric-label">Spatial Resolution Match</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">15-30 FPS</div>
+                            <div class="metric-label">Temporal Resolution Support</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">&lt; 60sec</div>
+                            <div class="metric-label">Total Processing Time</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">95%+</div>
+                            <div class="metric-label">Target Diagnostic Accuracy</div>
+                        </div>
+                    </div>
+                    
+                    <div class="competitive-grid">
+                        <div class="competitor-card">
+                            <h3>AI Model Architecture</h3>
+                            <p><strong>Backbone:</strong> ResNet-50 with attention mechanisms</p>
+                            <p><strong>Training Data:</strong> 10,000+ annotated angiography cases</p>
+                            <p><strong>Validation:</strong> Multi-site clinical validation with expert consensus</p>
+                            <p><strong>Deployment:</strong> Cloud-native with edge computing capabilities</p>
+                        </div>
+                        
+                        <div class="competitor-card">
+                            <h3>Integration Requirements</h3>
+                            <p><strong>DICOM Compatibility:</strong> All major cath lab vendors</p>
+                            <p><strong>Network:</strong> Secure HTTPS/TLS 1.3 communication</p>
+                            <p><strong>Storage:</strong> Minimal local footprint, cloud processing</p>
+                            <p><strong>Latency:</strong> <200ms for real-time feedback</p>
+                        </div>
+                        
+                        <div class="competitor-card">
+                            <h3>Quality Assurance</h3>
+                            <p><strong>Validation Metrics:</strong> Sensitivity >95%, Specificity >90%</p>
+                            <p><strong>Uncertainty Quantification:</strong> Bayesian confidence intervals</p>
+                            <p><strong>Continuous Learning:</strong> Federated learning from clinical use</p>
+                            <p><strong>Error Detection:</strong> Automated flagging of edge cases</p>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <h3>Competitive Technical Advantages</h3>
+                        <h4 style="margin: 15px 0 10px 0;">vs. CT-Based Solutions (HeartFlow, Cleerly):</h4>
+                        <ul>
+                            <li><strong>No Additional Imaging:</strong> Works with existing angiography workflow</li>
+                            <li><strong>Real-Time Analysis:</strong> Results available during the procedure</li>
+                            <li><strong>Dynamic Assessment:</strong> Captures actual flow patterns vs. static anatomy</li>
+                            <li><strong>Lower Radiation:</strong> No additional CT scan required</li>
+                        </ul>
+                        
+                        <h4 style="margin: 15px 0 10px 0;">vs. Hardware Vendors (Philips, Siemens):</h4>
+                        <ul>
+                            <li><strong>Advanced AI:</strong> Deep learning vs. basic geometric reconstruction</li>
+                            <li><strong>Multi-Angle Fusion:</strong> Combines 2-3 views vs. single rotational acquisition</li>
+                            <li><strong>Vendor Agnostic:</strong> Works across all major cath lab systems</li>
+                            <li><strong>Rapid Innovation:</strong> Software-only updates vs. hardware refresh cycles</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="action-item">
+                        <strong>Technology Roadmap:</strong> 
+                        Q1 2025: Core AI model development | 
+                        Q2 2025: Multi-angle fusion algorithms | 
+                        Q3 2025: Clinical validation platform | 
+                        Q4 2025: Commercial prototype ready for FDA submission
+                    </div>
+                </div>
+                
+                <!-- Development Plan -->
+                <div class="section" id="development-plan">
+                    <h2>Development Roadmap</h2>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <h4>Phase 1: MVP Development (Months 1-6)</h4>
+                            <ul>
+                                <li>Core AI model development and training</li>
+                                <li>DICOM processing pipeline</li>
+                                <li>Basic 3D reconstruction from 2 angles</li>
+                                <li>Initial HIPAA compliance framework</li>
+                            </ul>
+                            <strong>Funding Needed: $800K</strong>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <h4>Phase 2: Clinical Prototype (Months 7-12)</h4>
+                            <ul>
+                                <li>Multi-angle fusion capability</li>
+                                <li>Flow analysis integration</li>
+                                <li>Clinical validation with Dr. Swadia</li>
+                                <li>Partnership discussions with hospitals</li>
+                            </ul>
+                            <strong>Funding Needed: $1.2M</strong>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <h4>Phase 3: FDA Preparation (Months 13-18)</h4>
+                            <ul>
+                                <li>Multi-site clinical validation studies</li>
+                                <li>FDA pre-submission meetings</li>
+                                <li>510(k) application preparation</li>
+                            </ul>
+                            <strong>Funding Needed: $2M</strong>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <h4>Phase 4: Market Launch (Months 19-24)</h4>
+                            <ul>
+                                <li>FDA clearance completion</li>
+                                <li>Commercial product launch</li>
+                                <li>Sales and marketing expansion</li>
+                            </ul>
+                            <strong>Funding Needed: $3M</strong>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Regulatory -->
+                <div class="section" id="regulatory">
+                    <h2>Regulatory Pathway</h2>
+                    
+                    <div class="highlight-box">
+                        <h3>510(k) Predicate Pathway</h3>
+                        <p>Our system qualifies for 510(k) clearance as a Class II medical device software, similar to existing 3D reconstruction tools like Philips Allura 3D-CA and Siemens IC3D.</p>
+                    </div>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <h4>Pre-Submission (Q-Sub)</h4>
+                            <p>Month 9: FDA feedback on clinical study design and predicate devices</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <h4>Clinical Validation</h4>
+                            <p>Months 12-15: Multi-site clinical study with 200+ patients, led by Dr. Swadia</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <h4>510(k) Submission</h4>
+                            <p>Month 16: Complete application with clinical data</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <h4>FDA Clearance</h4>
+                            <p>Month 20: Expected clearance (90-day review cycle)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Financial Projections -->
+                <div class="section" id="financial">
+                    <h2>Financial Projections</h2>
+                    
+                    <div class="competitive-grid">
+                        <div class="competitor-card">
+                            <h3>Revenue Model</h3>
+                            <p><strong>Price:</strong> $75,000/year per hospital</p>
+                            <p><strong>Term:</strong> 3-year minimum commitment</p>
+                            <p><strong>Total Contract Value:</strong> $225,000</p>
+                            <p><strong>LTV/CAC Ratio:</strong> 22.5:1</p>
+                        </div>
+                        
+                        <div class="competitor-card">
+                            <h3>Growth Projections</h3>
+                            <p><strong>Year 2:</strong> 10 hospitals ($750K ARR)</p>
+                            <p><strong>Year 3:</strong> 50 hospitals ($3.75M ARR)</p>
+                            <p><strong>Year 4:</strong> 200 hospitals ($15M ARR)</p>
+                            <p><strong>Year 5:</strong> 400 hospitals ($30M ARR)</p>
+                        </div>
+                        
+                        <div class="competitor-card">
+                            <h3>Unit Economics</h3>
+                            <p><strong>Customer LTV:</strong> $225K</p>
+                            <p><strong>Customer CAC:</strong> $10K</p>
+                            <p><strong>Gross Margins:</strong> 70%</p>
+                            <p><strong>Break-Even:</strong> Year 4</p>
+                        </div>
+                    </div>
+                    
+                    <h3>5-Year Revenue Growth Projection</h3>
+                    <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin: 30px 0;">
+                        <div style="position: relative; height: 400px; margin: 20px 0;">
+                            <!-- Chart Background -->
+                            <div style="position: absolute; bottom: 0; left: 50px; right: 20px; height: 350px; border-left: 2px solid #ddd; border-bottom: 2px solid #ddd;">
+                                <!-- Grid Lines -->
+                                <div style="position: absolute; bottom: 0; width: 100%; height: 20%; border-top: 1px dashed #eee;"></div>
+                                <div style="position: absolute; bottom: 20%; width: 100%; height: 20%; border-top: 1px dashed #eee;"></div>
+                                <div style="position: absolute; bottom: 40%; width: 100%; height: 20%; border-top: 1px dashed #eee;"></div>
+                                <div style="position: absolute; bottom: 60%; width: 100%; height: 20%; border-top: 1px dashed #eee;"></div>
+                                <div style="position: absolute; bottom: 80%; width: 100%; height: 20%; border-top: 1px dashed #eee;"></div>
+                            </div>
+                            
+                            <!-- Y-axis Labels -->
+                            <div style="position: absolute; left: 0; bottom: 0; font-size: 12px; color: #666;">$0</div>
+                            <div style="position: absolute; left: 0; bottom: 18%; font-size: 12px; color: #666;">$6M</div>
+                            <div style="position: absolute; left: 0; bottom: 38%; font-size: 12px; color: #666;">$12M</div>
+                            <div style="position: absolute; left: 0; bottom: 58%; font-size: 12px; color: #666;">$18M</div>
+                            <div style="position: absolute; left: 0; bottom: 78%; font-size: 12px; color: #666;">$24M</div>
+                            <div style="position: absolute; left: 0; bottom: 98%; font-size: 12px; color: #666;">$30M</div>
+                            
+                            <!-- Revenue Bars -->
+                            <div style="position: absolute; bottom: 0; left: 60px; width: 16%; height: 350px; display: flex; align-items: end;">
+                                <div style="width: 60%; background: linear-gradient(to top, #667eea, #764ba2); height: 0%; border-radius: 5px 5px 0 0; position: relative; animation: growBar1 2s ease-out forwards;">
+                                    <div style="position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 12px; font-weight: bold; color: #667eea;">$0</div>
+                                </div>
+                            </div>
+                            
+                            <div style="position: absolute; bottom: 0; left: 22%; width: 16%; height: 350px; display: flex; align-items: end;">
+                                <div style="width: 60%; background: linear-gradient(to top, #667eea, #764ba2); height: 2.5%; border-radius: 5px 5px 0 0; position: relative; animation: growBar2 2s ease-out 0.5s forwards;">
+                                    <div style="position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 12px; font-weight: bold; color: #667eea;">$750K</div>
+                                </div>
+                            </div>
+                            
+                            <div style="position: absolute; bottom: 0; left: 38%; width: 16%; height: 350px; display: flex; align-items: end;">
+                                <div style="width: 60%; background: linear-gradient(to top, #667eea, #764ba2); height: 12.5%; border-radius: 5px 5px 0 0; position: relative; animation: growBar3 2s ease-out 1s forwards;">
+                                    <div style="position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 12px; font-weight: bold; color: #667eea;">$3.75M</div>
+                                </div>
+                            </div>
+                            
+                            <div style="position: absolute; bottom: 0; left: 54%; width: 16%; height: 350px; display: flex; align-items: end;">
+                                <div style="width: 60%; background: linear-gradient(to top, #667eea, #764ba2); height: 50%; border-radius: 5px 5px 0 0; position: relative; animation: growBar4 2s ease-out 1.5s forwards;">
+                                    <div style="position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 12px; font-weight: bold; color: #667eea;">$15M</div>
+                                </div>
+                            </div>
+                            
+                            <div style="position: absolute; bottom: 0; left: 70%; width: 16%; height: 350px; display: flex; align-items: end;">
+                                <div style="width: 60%; background: linear-gradient(to top, #667eea, #764ba2); height: 100%; border-radius: 5px 5px 0 0; position: relative; animation: growBar5 2s ease-out 2s forwards;">
+                                    <div style="position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 12px; font-weight: bold; color: #667eea;">$30M</div>
+                                </div>
+                            </div>
+                            
+                            <!-- X-axis Labels -->
+                            <div style="position: absolute; bottom: -30px; left: 12%; font-size: 14px; font-weight: 600; color: #333;">2025</div>
+                            <div style="position: absolute; bottom: -30px; left: 28%; font-size: 14px; font-weight: 600; color: #333;">2026</div>
+                            <div style="position: absolute; bottom: -30px; left: 44%; font-size: 14px; font-weight: 600; color: #333;">2027</div>
+                            <div style="position: absolute; bottom: -30px; left: 60%; font-size: 14px; font-weight: 600; color: #333;">2028</div>
+                            <div style="position: absolute; bottom: -30px; left: 76%; font-size: 14px; font-weight: 600; color: #333;">2029</div>
+                        </div>
+                        
+                        <!-- Chart Title and Legend -->
+                        <div style="text-align: center; margin-bottom: 20px;">
+                            <h4 style="color: #667eea; margin-bottom: 10px;">Annual Recurring Revenue (ARR)</h4>
+                            <p style="color: #666; font-size: 14px;">Projected growth from 0 to 400 hospital customers</p>
+                        </div>
+                    </div>
+                    
+                    <style>
+        :root {
+            --bg: #0b1020;
+            --bg-soft: #111735;
+            --card: #121a3b;
+            --text: #e8ebff;
+            --muted: #a5b0d5;
+            --brand: #6ae3ff;
+            --brand-2: #7c5cff;
+            --accent: #00d4ff;
+            --success: #2fd084;
+            --danger: #ff6b6b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            color: var(--text);
+            margin-bottom: 30px;
+            padding: 60px 0;
+            position: relative;
+            background: 
+                radial-gradient(60% 60% at 70% 30%, rgba(124,92,255,.25), transparent 60%),
+                radial-gradient(40% 40% at 20% 80%, rgba(0,212,255,.18), transparent 60%);
+        }
+        
+        .header h1 {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            color: var(--muted);
+        }
+        
+        .business-plan {
+            background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,.4);
+            overflow: hidden;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background: var(--bg-soft);
+            border-bottom: 1px solid rgba(255,255,255,.08);
+            overflow-x: auto;
+            flex-wrap: wrap;
+        }
+        
+        .nav-tab {
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            border: none;
+            background: none;
+            font-size: 14px;
+            font-weight: 600;
+            min-width: fit-content;
+            color: var(--muted);
+        }
+        
+        .nav-tab:hover {
+            background: rgba(255,255,255,.05);
+            color: var(--text);
+        }
+        
+        .nav-tab.active {
+            background: linear-gradient(180deg, var(--brand-2), #5a3bff);
+            color: var(--text);
+            box-shadow: 0 0 20px rgba(124,92,255,.3);
+        }
+        
+        .tab-content {
+            padding: 30px;
+            min-height: 600px;
+            background: var(--card);
+        }
+        
+        .section {
+            display: none;
+            width: 100%;
+        }
+        
+        .section.show {
+            display: block;
+        }
+        
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .metric-card {
+            background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+            border: 1px solid rgba(255,255,255,.12);
+            color: var(--text);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--brand), var(--brand-2));
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            color: var(--brand);
+        }
+        
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+        
+        .competitive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .competitor-card {
+            background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,.2);
+        }
+        
+        .competitor-card h3 {
+            color: var(--brand);
+            margin-bottom: 15px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(124,92,255,.2), rgba(0,212,255,.15));
+            border: 1px solid rgba(255,255,255,.1);
+            color: var(--text);
+            padding: 25px;
+            border-radius: 16px;
+            margin: 20px 0;
+            box-shadow: 0 15px 35px rgba(124,92,255,.2);
+            position: relative;
+        }
+        
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            border-radius: inherit;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: xor;
+        }
+        
+        .highlight-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            color: var(--text);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 30px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(180deg, var(--brand), var(--brand-2));
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 70px;
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            left: 20px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            border-radius: 50%;
+            border: 3px solid var(--card);
+            box-shadow: 0 0 15px rgba(124,92,255,.4);
+        }
+        
+        .financial-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 15px 35px rgba(0,0,0,.3);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .financial-table th,
+        .financial-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+        
+        .financial-table th {
+            background: linear-gradient(135deg, var(--brand-2), #5a3bff);
+            color: var(--text);
+            font-weight: 600;
+        }
+        
+        .financial-table tr:nth-child(even) {
+            background: rgba(255,255,255,.02);
+        }
+        
+        .financial-table tr {
+            background: var(--card);
+            color: var(--text);
+        }
+        
+        .risk-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .risk-item {
+            padding: 20px;
+            border-radius: 12px;
+            background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+            border: 1px solid rgba(255,255,255,.08);
+            box-shadow: 0 8px 25px rgba(0,0,0,.2);
+        }
+        
+        .risk-high {
+            border-left: 4px solid var(--danger);
+        }
+        
+        .risk-medium {
+            border-left: 4px solid #ff9800;
+        }
+        
+        .risk-low {
+            border-left: 4px solid var(--success);
+        }
+        
+        .action-item {
+            background: linear-gradient(135deg, rgba(0,212,255,.1), rgba(124,92,255,.05));
+            border: 1px solid rgba(0,212,255,.2);
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            color: var(--text);
+        }
+        
+        .action-item strong {
+            color: var(--accent);
+        }
+        
+        .strength {
+            color: var(--success);
+            margin-bottom: 5px;
+        }
+        
+        .weakness {
+            color: var(--danger);
+            margin-bottom: 5px;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
+        
+        .modal-content {
+            background: var(--card);
+            border: 1px solid rgba(255,255,255,.08);
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0,0,0,.5);
+            color: var(--text);
+        }
+        
+        .close {
+            color: var(--muted);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .close:hover {
+            color: var(--brand);
+        }
+        
+        .bio-header {
+            background: linear-gradient(135deg, var(--brand-2), #5a3bff);
+            color: var(--text);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .bio-section {
+            margin-bottom: 25px;
+        }
+        
+        .bio-section h3 {
+            color: var(--brand);
+            border-bottom: 2px solid var(--brand);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .experience-item {
+            background: rgba(255,255,255,.02);
+            border: 1px solid rgba(255,255,255,.08);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--brand);
+        }
+        
+        .experience-item h4 {
+            color: var(--brand);
+            margin-bottom: 5px;
+        }
+        
+        .experience-item .date {
+            color: var(--muted);
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        h2, h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--text);
+        }
+        
+        h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            margin: 0 0 20px;
+        }
+        
+        h3 {
+            margin-bottom: 15px;
+        }
+        
+        p, li {
+            color: var(--muted);
+        }
+        
+        ul {
+            color: var(--muted);
+        }
+        
+        strong {
+            color: var(--text);
+        }
+        
+        @keyframes growBar1 {
+            from { height: 0%; }
+            to { height: 0%; }
+        }
+        @keyframes growBar2 {
+            from { height: 0%; }
+            to { height: 2.5%; }
+        }
+        @keyframes growBar3 {
+            from { height: 0%; }
+            to { height: 12.5%; }
+        }
+        @keyframes growBar4 {
+            from { height: 0%; }
+            to { height: 50%; }
+        }
+        @keyframes growBar5 {
+            from { height: 0%; }
+            to { height: 100%; }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .metric-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .competitive-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tab-content {
+                padding: 20px;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 20px;
+            }
+        }
+    
+/* --- Fix for highlight tiles: remove overlay, use solid background, ensure text clickable/visible --- */
+.highlight-box { background:#121a3b !important; border:1px solid #22306f !important; color:#e8ebff !important; position:relative; }
+.highlight-box::before { content:none !important; display:none !important; pointer-events:none !important; }
+.highlight-box > * { position:relative; z-index:1; color:#e8ebff !important; }
+
+
+/* === Sticky header for tabs + non-wrapping scrollable row === */
+.nav-tabs {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: linear-gradient(180deg, rgba(14,19,45,.95), rgba(14,19,45,.85));
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #1a2255;
+  box-shadow: 0 6px 20px rgba(0,0,0,.25);
+  padding-top: 8px;
+}
+.nav-tabs > div, .nav-tabs {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.nav-tabs::-webkit-scrollbar { height: 8px; }
+.nav-tabs::-webkit-scrollbar-thumb { background: #22306f; border-radius: 8px; }
+.nav-tabs { white-space: nowrap; }
+.nav-tab { display: inline-flex; flex: 0 0 auto; margin-right: 8px; }
+
+
+/* === Hamburger for small screens === */
+.hamburger {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 40px;
+  height: 36px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(122,93,255,.28), rgba(0,212,255,.20));
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  z-index: 60;
+}
+.hamburger span { display:block; width:22px; height:2px; background:#e8ebff; border-radius:2px; }
+@media (max-width: 820px) {
+  .hamburger { display:flex; }
+  .nav-tabs { padding-top: 12px; }
+  .tab-row {
+    display: none;
+    position: absolute;
+    left: 0; right: 0; top: 56px;
+    background: linear-gradient(180deg, rgba(14,19,45,.98), rgba(14,19,45,.94));
+    border-bottom: 1px solid #1a2255;
+    padding: 8px 10px 12px;
+    box-shadow: 0 16px 28px rgba(0,0,0,.35);
+  }
+  .tab-row.open { display: block; }
+  .tab-row .nav-tab { display:block; width:100%; margin:6px 0; }
+}
+
+
+/* --- Force normal text wrapping inside content --- */
+.tab-content, .tab-content *,
+.section, .section *,
+.highlight-box, .highlight-box * {
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+</style>
+                    
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th>Year</th>
+                                <th>Hospitals</th>
+                                <th>Revenue</th>
+                                <th>EBITDA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2025</td>
+                                <td>0</td>
+                                <td>$0</td>
+                                <td>-$3.0M</td>
+                            </tr>
+                            <tr>
+                                <td>2026</td>
+                                <td>10</td>
+                                <td>$750K</td>
+                                <td>-$4.05M</td>
+                            </tr>
+                            <tr>
+                                <td>2027</td>
+                                <td>50</td>
+                                <td>$3.75M</td>
+                                <td>-$2.56M</td>
+                            </tr>
+                            <tr>
+                                <td>2028</td>
+                                <td>200</td>
+                                <td>$15M</td>
+                                <td>$2.5M</td>
+                            </tr>
+                            <tr>
+                                <td>2029</td>
+                                <td>400</td>
+                                <td>$30M</td>
+                                <td>$9M</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="highlight-box">
+                        <h3>Revenue Growth Strategy</h3>
+                        <p><strong>Phase 1 (2025-2026):</strong> Pilot programs with early adopter hospitals, focusing on clinical validation and product refinement</p>
+                        <p><strong>Phase 2 (2027):</strong> Accelerated customer acquisition through proven ROI case studies and key opinion leader endorsements</p>
+                        <p><strong>Phase 3 (2028-2029):</strong> Market expansion and strategic partnerships with major health systems for enterprise deployments</p>
+                        
+                        <p style="margin-top: 15px;"><strong>Key Growth Drivers:</strong> Clinical outcome improvements, cost savings validation, streamlined regulatory approval, and competitive differentiation in real-time AI angiography analysis</p>
+                    </div>
+                </div>
+                
+                <!-- Risk Analysis -->
+                <div class="section" id="risks">
+                    <h2>Risk Analysis & Mitigation</h2>
+                    
+                    <div class="highlight-box">
+                        <h3>Comprehensive Risk Assessment Framework</h3>
+                        <p>Our risk analysis categorizes threats by type and prioritizes them based on likelihood and impact. Each risk includes detailed mitigation strategies informed by industry best practices for AI medtech startups in cardiac imaging.</p>
+                    </div>
+                    
+                    <h3>Technical Risks</h3>
+                    <div class="risk-matrix">
+                        <div class="risk-item risk-high">
+                            <h4>High Risk - High Impact</h4>
+                            <strong>AI Model Accuracy Errors</strong>
+                            <p><strong>Risk:</strong> AI models may produce errors in 3D rendering (e.g., missegmentation of vessels due to motion artifacts or variable anatomy), leading to inaccurate occlusion detection.</p>
+                            <p><strong>Mitigation:</strong> Implement explainable AI (XAI) techniques for model transparency; conduct rigorous validation on diverse datasets (1,000+ annotated angiography cases); use ensemble models and continuous monitoring to reduce errors to <5%; partner with cardiologists for iterative testing.</p>
+                        </div>
+                        
+                        <div class="risk-item risk-medium">
+                            <h4>Medium Risk</h4>
+                            <strong>API Dependency</strong>
+                            <p><strong>Risk:</strong> Dependency on Grok API downtime affecting system availability.</p>
+                            <p><strong>Mitigation:</strong> Implement API redundancies (fallback to AWS ML); maintain SLAs with xAI for uptime guarantees; develop offline processing capabilities for critical functions.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Regulatory and Compliance Risks</h3>
+                    <div class="risk-matrix">
+                        <div class="risk-item risk-high">
+                            <h4>High Risk - High Impact</h4>
+                            <strong>FDA Approval Delays</strong>
+                            <p><strong>Risk:</strong> FDA/EMA approval delays for SaMD (Software as a Medical Device) due to evolving AI guidelines, plus HIPAA/GDPR non-compliance risks in data handling.</p>
+                            <p><strong>Mitigation:</strong> Engage regulatory consultants early for 510(k) pathway; pursue FDA breakthrough designation; build HIPAA-compliant cloud infrastructure (AWS with encryption); conduct annual audits and bias assessments to meet standards like ISO 13485.</p>
+                        </div>
+                        
+                        <div class="risk-item risk-medium">
+                            <h4>Medium Risk</h4>
+                            <strong>Compliance Standards Evolution</strong>
+                            <p><strong>Risk:</strong> Changing regulatory requirements for AI medical devices.</p>
+                            <p><strong>Mitigation:</strong> Maintain active FDA communication; build flexible compliance framework; engage with industry working groups on AI standards.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Data and Bias Risks</h3>
+                    <div class="risk-matrix">
+                        <div class="risk-item risk-high">
+                            <h4>High Risk - Medium Impact</h4>
+                            <strong>Dataset Bias and Limited Diversity</strong>
+                            <p><strong>Risk:</strong> Limited/diverse datasets may introduce biases (e.g., underrepresentation of demographics), causing inaccurate models for non-standard patients.</p>
+                            <p><strong>Mitigation:</strong> Source balanced datasets from partnerships (e.g., MIMIC-CXR or hospital collaborations); apply debiasing algorithms during training; perform fairness audits and retrain models quarterly with new data.</p>
+                        </div>
+                        
+                        <div class="risk-item risk-medium">
+                            <h4>Medium Risk</h4>
+                            <strong>Data Quality and Standardization</strong>
+                            <p><strong>Risk:</strong> Inconsistent DICOM data quality across institutions affecting model performance.</p>
+                            <p><strong>Mitigation:</strong> Develop robust preprocessing pipelines; establish data quality standards with hospital partners; implement automated quality checks.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Ethical and Clinical Risks</h3>
+                    <div class="risk-matrix">
+                        <div class="risk-item risk-medium">
+                            <h4>Medium Risk - High Impact</h4>
+                            <strong>Clinical Over-Reliance</strong>
+                            <p><strong>Risk:</strong> Over-reliance on AI could lead to clinician deskilling or ethical issues like data privacy breaches; potential harm from false positives/negatives in diagnostics.</p>
+                            <p><strong>Mitigation:</strong> Design as decision-support tool (not replacement); include ethical guidelines in development (e.g., ACC principles); conduct clinical trials with oversight and liability insurance; educate users via training modules.</p>
+                        </div>
+                        
+                        <div class="risk-item risk-medium">
+                            <h4>Medium Risk</h4>
+                            <strong>Patient Privacy and Data Security</strong>
+                            <p><strong>Risk:</strong> Potential breaches of patient data during processing and storage.</p>
+                            <p><strong>Mitigation:</strong> Implement end-to-end encryption; conduct regular security audits; maintain minimal data retention policies; ensure HIPAA compliance training for all staff.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Financial and Market Risks</h3>
+                    <div class="risk-matrix">
+                        <div class="risk-item risk-medium">
+                            <h4>Medium Risk - Medium Impact</h4>
+                            <strong>Cash Flow and Market Adoption</strong>
+                            <p><strong>Risk:</strong> High burn rate from API costs or delayed revenue; market adoption slowed by competition or reimbursement issues.</p>
+                            <p><strong>Mitigation:</strong> Secure $5-10M seed with milestones; optimize Grok API usage (e.g., batch processing); pursue CPT codes for reimbursement; diversify revenue with pilots and partnerships.</p>
+                        </div>
+                        
+                        <div class="risk-item risk-medium">
+                            <h4>Medium Risk</h4>
+                            <strong>Competitive Response</strong>
+                            <p><strong>Risk:</strong> Large players (Philips, Siemens) developing competing AI solutions.</p>
+                            <p><strong>Mitigation:</strong> Strong IP protection strategy; focus on first-mover advantage; establish exclusive hospital partnerships; continuous innovation pipeline.</p>
+                        </div>
+                        
+                        <div class="risk-item risk-low">
+                            <h4>Low Risk</h4>
+                            <strong>Reimbursement Uncertainty</strong>
+                            <p><strong>Risk:</strong> Delayed or limited insurance coverage for AI diagnostic tools.</p>
+                            <p><strong>Mitigation:</strong> Engage with payers early; demonstrate clear ROI; work with industry groups on CPT code development; offer value-based pricing models.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Operational Risks</h3>
+                    <div class="risk-matrix">
+                        <div class="risk-item risk-low">
+                            <h4>Low Risk - Medium Impact</h4>
+                            <strong>Team Retention and Scaling</strong>
+                            <p><strong>Risk:</strong> Difficulty retaining AI talent in competitive market; remote team coordination challenges.</p>
+                            <p><strong>Mitigation:</strong> Offer competitive equity packages and remote perks; implement strong remote collaboration tools; establish clear communication protocols; regular team building activities.</p>
+                        </div>
+                        
+                        <div class="risk-item risk-low">
+                            <h4>Low Risk</h4>
+                            <strong>Infrastructure Scalability</strong>
+                            <p><strong>Risk:</strong> System performance issues as customer base grows.</p>
+                            <p><strong>Mitigation:</strong> Design cloud-native architecture; implement auto-scaling capabilities; conduct regular performance testing; maintain 99.9% uptime SLA.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <h3>Risk Monitoring and Management</h3>
+                        <p><strong>Quarterly Risk Reviews:</strong> Board-level assessment of all risk categories with updated mitigation strategies</p>
+                        <p><strong>Early Warning Systems:</strong> Automated monitoring for technical performance, regulatory changes, and competitive developments</p>
+                        <p><strong>Insurance Coverage:</strong> Professional liability, cyber security, and clinical trial insurance policies</p>
+                        <p><strong>Contingency Planning:</strong> Detailed response plans for high-impact scenarios including regulatory delays and technical failures</p>
+                    </div>
+                    
+                    <div class="action-item">
+                        <strong>Risk Management Timeline:</strong> 
+                        Month 1: Implement technical monitoring systems | 
+                        Month 3: Complete regulatory consultation | 
+                        Month 6: Conduct first comprehensive risk audit | 
+                        Month 12: Full risk framework operational review
+                    </div>
+                    
+                    <h3>Future Growth Risk Considerations</h3>
+                    <div class="competitive-grid">
+                        <div class="competitor-card">
+                            <h3>Multi-Modal Expansion Risks</h3>
+                            <p><strong>Opportunity:</strong> Integrate CT imaging and echocardiography for comprehensive cardiac assessment</p>
+                            <p><strong>Risks:</strong> Increased regulatory complexity, higher development costs, longer validation timelines</p>
+                            <p><strong>Mitigation:</strong> Phased rollout approach, separate regulatory pathways, strategic partnerships with imaging vendors</p>
+                        </div>
+                        
+                        <div class="competitor-card">
+                            <h3>International Expansion Risks</h3>
+                            <p><strong>Opportunity:</strong> European and Asian markets for cardiac AI</p>
+                            <p><strong>Risks:</strong> Varying regulatory requirements, data localization laws, cultural adoption barriers</p>
+                            <p><strong>Mitigation:</strong> Regulatory consultants in target markets, local partnerships, flexible data architecture</p>
+                        </div>
+                        
+                        <div class="competitor-card">
+                            <h3>Platform Evolution Risks</h3>
+                            <p><strong>Opportunity:</strong> Expand to predictive analytics and workflow optimization</p>
+                            <p><strong>Risks:</strong> Feature creep, loss of focus, increased competition from broader platforms</p>
+                            <p><strong>Mitigation:</strong> Clear product roadmap, customer validation for new features, maintain core competency focus</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Funding Ask -->
+                <div class="section" id="funding">
+                    <h2>Seed Funding Request</h2>
+                    
+                    <div class="highlight-box">
+                        <h3>Funding Ask: $5M Seed Round</h3>
+                        <p>18-month runway to achieve MVP development, initial customer traction, and Series A readiness</p>
+                    </div>
+                    
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Amount</th>
+                                <th>Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Team Salaries</td>
+                                <td>$1,800K</td>
+                                <td>36%</td>
+                            </tr>
+                            <tr>
+                                <td>R&D & Prototyping</td>
+                                <td>$500K</td>
+                                <td>10%</td>
+                            </tr>
+                            <tr>
+                                <td>Legal/Regulatory</td>
+                                <td>$300K</td>
+                                <td>6%</td>
+                            </tr>
+                            <tr>
+                                <td>Technology Infrastructure</td>
+                                <td>$200K</td>
+                                <td>4%</td>
+                            </tr>
+                            <tr>
+                                <td>Operations & Contingency</td>
+                                <td>$2,200K</td>
+                                <td>44%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="action-item">
+                        <strong>Next Steps:</strong> 
+                        1) Patent protection and IP strategy implementation
+                        2) Remote team recruitment (AI engineers, regulatory specialists)
+                        3) Dr. Swadia clinical validation protocol development
+                        4) Initial hospital partnership discussions
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Brad Olson Bio Modal -->
+    <div id="bradBioModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeBradBio()">&times;</span>
+            
+            <div class="bio-header">
+                <h2>Brad E. Olson, MSN, RN</h2>
+                <h3>CEO/COO - Cardiovascular Services Leader</h3>
+                <p>808-219-9209 | bradevanolson@gmail.com | Howell, MI</p>
+            </div>
+            
+            <div class="bio-section">
+                <h3>Executive Summary</h3>
+                <p>As a dedicated and experienced manager of cardiology interventional labs, Brad's mission is to elevate the standard of care, enrich the patient experience, and optimize clinical outcomes. He achieves this by fostering collaboration within talented teams, enhancing scheduling efficiencies, and effectively managing resources to reduce supply and labor costs. His leadership combines clinical expertise with business acumen to drive operational excellence and innovation in cardiovascular care.</p>
+            </div>
+            
+            <div class="bio-section">
+                <h3>Leadership Experience</h3>
+                
+                <div class="experience-item">
+                    <h4>Department Manager: Cardiac Catheterization and Electrophysiology Lab</h4>
+                    <div class="date">Trinity Health Livonia Hospital, Livonia, MI | 09/2024 - Present</div>
+                    <ul>
+                        <li>Currently developing an EP Left side ablation program</li>
+                        <li>Project planning new hemodynamic system upgrade in the Cath Labs</li>
+                        <li>Data mining and presenting lab efficiencies, highlighting opportunities in patient scheduling and staffing models</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-item">
+                    <h4>Department Manager: Cardiac Catheterization and Electrophysiology Lab</h4>
+                    <div class="date">McLaren Greater Lansing, Lansing, MI | 08/2021 - 09/2024</div>
+                    <ul>
+                        <li>Successfully planned and completed move into new hospital with 6 procedure labs - zero equipment or care failures</li>
+                        <li>Recruited 16 new team members while improving engagement and reducing turnover</li>
+                        <li><strong>Reduced labor costs by over $500,000</strong> in 11 months with no agency staff</li>
+                        <li><strong>Increased revenue and procedure volume by 35%</strong> (240 to 325 cases per month) through scheduling efficiencies</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-item">
+                    <h4>Department Manager: Cardiac Catheterization and Electrophysiology Lab</h4>
+                    <div class="date">Queen's Medical Center, Honolulu, HI | 09/2020 - 08/2021</div>
+                    <ul>
+                        <li>Hired 11 qualified staff in challenging island environment</li>
+                        <li><strong>Improved Labor vs Procedure Productivity from 65% to 130%</strong> in 7 months</li>
+                        <li>Project managed construction of two new EP procedure rooms for Atrial Fib program expansion</li>
+                        <li>Enhanced Epic Snap Boards for scheduling and developed preference cards</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-item">
+                    <h4>Director of Nursing, Specialty Services and Programs</h4>
+                    <div class="date">St. Joseph Mercy Hospital, Ann Arbor, MI | 12/2019 - 08/2020</div>
+                    <ul>
+                        <li>Led successful Epic Go-Live implementation across multiple nursing departments</li>
+                        <li>Developed and implemented hospital-wide Kronos Staff Scheduling strategy</li>
+                        <li>Managed Inpatient Rehab, Hemodialysis, Central Staffing, Palliative Care, and other specialty services</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-item">
+                    <h4>Department Manager: Cardiac Catheterization and Electrophysiology Lab</h4>
+                    <div class="date">St. Joseph Mercy Hospital, Ann Arbor, MI | 08/2017 - 12/2019</div>
+                    <ul>
+                        <li>Enhanced team engagement from C+ to A- using Standout! application coaching methods</li>
+                        <li><strong>Lean Six Sigma project:</strong> Improved on-time starts from 10% to 100%, reduced room turnover from 35 to under 20 minutes</li>
+                        <li><strong>Inventory optimization:</strong> Decreased waste by $75,000 yearly through improved tracking and cost analysis</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="bio-section">
+                <h3>Education & Certifications</h3>
+                <div class="competitive-grid">
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #667eea; margin-bottom: 10px;">Advanced Degrees</h4>
+                        <p><strong>Master of Science in Nursing</strong><br>Adult-Gerontology Primary Care NP<br>Eastern Michigan University (2015-2017)</p>
+                        <p><strong>Master Certificate</strong><br>Health Care System Teaching<br>Eastern Michigan University</p>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #667eea; margin-bottom: 10px;">Process Improvement</h4>
+                        <p><strong>Lean Six Sigma Green Belt</strong><br>University of Michigan (2017-2018)</p>
+                        <p>12-month project optimizing scheduling efficiencies in cardiovascular procedure areas</p>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #667eea; margin-bottom: 10px;">Clinical Licenses</h4>
+                        <p><strong>Registered Nurse</strong><br>Michigan, Hawaii, California, Florida</p>
+                        <p><strong>Certifications:</strong> ALS, BLS</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bio-section">
+                <h3>Teaching Experience</h3>
+                <div class="experience-item">
+                    <h4>Adjunct Professor, School of Nursing</h4>
+                    <div class="date">Hawaii Pacific University | 08/2021 - 12/2021</div>
+                    <p>NUR 8010-PA1 - Leadership and Systems Management (PhD level online course)</p>
+                </div>
+                
+                <div class="experience-item">
+                    <h4>Adjunct Professor, School of Nursing</h4>
+                    <div class="date">Eastern Michigan University | 04/2017 - 08/2018</div>
+                    <p>NUR 220 - Physical Assessment and Health Examination (undergraduate course)</p>
+                </div>
+            </div>
+            
+            <div class="bio-section">
+                <h3>Key Achievements & Skills</h3>
+                <div class="competitive-grid">
+                    <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; border-left: 4px solid #2196f3;">
+                        <h4 style="color: #1976d2;">Operational Excellence</h4>
+                        <ul style="margin-top: 10px;">
+                            <li>$500K+ annual cost reductions</li>
+                            <li>35% procedure volume increases</li>
+                            <li>130% productivity improvements</li>
+                            <li>Zero equipment failures in major transitions</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: #f3e5f5; padding: 15px; border-radius: 8px; border-left: 4px solid #9c27b0;">
+                        <h4 style="color: #7b1fa2;">Technical Expertise</h4>
+                        <ul style="margin-top: 10px;">
+                            <li>Epic, Cerner, McKesson systems</li>
+                            <li>Philips Xper, SQL, Tableau</li>
+                            <li>R and Python programming</li>
+                            <li>Power BI analytics</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; border-left: 4px solid #4caf50;">
+                        <h4 style="color: #388e3c;">Leadership Strengths</h4>
+                        <ul style="margin-top: 10px;">
+                            <li>Team building & engagement</li>
+                            <li>Process improvement (Lean Six Sigma)</li>
+                            <li>Clinical data analysis</li>
+                            <li>Project management</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box" style="margin-top: 20px;">
+                <h3>Why Brad is Perfect for CardioView 3D</h3>
+                <p>Brad brings a unique combination of clinical expertise, operational excellence, and technology fluency that makes him ideally suited to lead CardioView 3D. His track record of implementing new technologies in cath labs, combined with his data analytics skills and proven ability to drive adoption while reducing costs, positions him perfectly to bring AI-powered 3D reconstruction to market.</p>
+                
+                <p style="margin-top: 15px;"><strong>His experience with Epic, Philips Xper systems, and programming languages like Python demonstrates the technical acumen needed to integrate AI solutions into existing cath lab workflows - exactly what CardioView 3D requires for successful market penetration.</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('show');
+            });
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show target section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('show');
+            }
+            
+            // Add active class to clicked tab
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+        }
+        
+        function showBradBio() {
+            document.getElementById('bradBioModal').style.display = 'block';
+        }
+        
+        function closeBradBio() {
+            document.getElementById('bradBioModal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('bradBioModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('executive-summary');
+        });
+    </script>
+
+<script>
+  (function() {
+    const burger = document.querySelector('.hamburger');
+    const row = document.querySelector('.tab-row');
+    if (burger && row) {
+      burger.addEventListener('click', () => {
+        const open = row.classList.toggle('open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      // Close drawer if user taps a tab
+      row.addEventListener('click', (e) => {
+        if (e.target.classList.contains('nav-tab') && row.classList.contains('open')) {
+          row.classList.remove('open');
+          burger.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>
